@@ -1,5 +1,5 @@
 print("in this doc should be implemented my first pipeline")
-print("\nDas Beispiel von towards Data Sience")
+print("\nDas Beispiel von towards Data Sience\n")
 
 #Einlesen des Datensatzes
 
@@ -8,17 +8,30 @@ filepath = 'winequality-red.csv'
 winedf = pd.read_csv(filepath, sep=';')
 
 print(winedf.isnull().sum())
-print(winedf.head(3))
+#alle Merkmale werden einmal dargestelt
+
+print(winedf.head(5))
+#die ersten 5 Zeilen werden dargestellt
 
 #Trennen der Eigenschaften und Labels vom Datenset
 
 X = winedf.drop(['quality'], axis=1)
+#Ausschneiden der letzten Spalte 'quality'
+#print('-----------X')
+#print(X)
+
 Y = winedf['quality']
+#speichern der Werte aus der letzten zuvor gelöschten Spalte
+#print('-----------Y')
+#print(Y)
 
 from sklearn.svm import SVC
+#C-Support Vector Classification ist ein estimator
 from sklearn.preprocessing import StandardScaler
+#StandardScaler ist ein Transformer
 
 steps = [('Scaler', StandardScaler()), ('SVM', SVC())]
+#Definition des zu verwendenden Estimator und Transformer
 
 from sklearn.pipeline import Pipeline
 pipeline = Pipeline(steps) #definition des Pipeline Objekts.
